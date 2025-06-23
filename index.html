@@ -65,13 +65,6 @@
       color: red;
     }
 
-    a.download-link {
-      display: inline-block;
-      margin-top: 10px;
-      text-decoration: none;
-      color: #0078D7;
-    }
-
     footer {
       margin-top: 40px;
       font-size: 14px;
@@ -82,7 +75,7 @@
 <body>
   <div class="container">
     <h2>🎓 Certificate Verification</h2>
-    <input type="text" id="certId" placeholder="Enter Certificate ID (e.g., FSTS-2025-1234)" />
+    <input type="text" id="certId" placeholder="Enter Certificate ID (e.g., FSTS-2025-2238)" />
     <button onclick="verifyCertificate()">Verify</button>
     <div id="result"></div>
     <footer>© 2024 Fly Skill Tech Solution. All Rights Reserved.</footer>
@@ -111,8 +104,7 @@
                 ✅ Certificate Verified<br><br>
                 <strong>Name:</strong> ${data.name}<br>
                 <strong>Course:</strong> ${data.course}<br>
-                <strong>Date:</strong> ${data.date}<br><br>
-                <a class="download-link" href="${data.certURL}" target="_blank" download>⬇ Download Certificate</a>
+                <strong>Date:</strong> ${data.date}<br>
               </div>
             `;
           }
