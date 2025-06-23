@@ -12,6 +12,7 @@
       justify-content: center;
       align-items: center;
       height: 100vh;
+      margin: 0;
     }
 
     .container {
@@ -20,6 +21,7 @@
       box-shadow: 0 10px 30px rgba(0,0,0,0.1);
       padding: 40px;
       max-width: 480px;
+      width: 90%;
       text-align: center;
     }
 
@@ -53,6 +55,7 @@
 
     #result {
       margin-top: 20px;
+      font-size: 16px;
     }
 
     .success {
@@ -68,6 +71,7 @@
       margin-top: 10px;
       text-decoration: none;
       color: #0078D7;
+      font-weight: bold;
     }
 
     footer {
@@ -83,7 +87,7 @@
     <input type="text" id="certId" placeholder="Enter Certificate ID (e.g., FSTS-2025-2238)" />
     <button onclick="verifyCertificate()">Verify</button>
     <div id="result"></div>
-    <footer>© Copyright 2024 FlySkillTechSolution. All Rights Reserved.</footer>
+    <footer>© 2024 Fly Skill Tech Solution. All Rights Reserved.</footer>
   </div>
 
   <script>
@@ -96,7 +100,8 @@
         return;
       }
 
-      const apiUrl = `https://script.google.com/macros/s/AKfycbzHQQe6n15acgPHodujgA15xnCSy_9HYn_CK6B7xDEoOxKFykj1OQNsXmt1V0Tihm63/exec`;
+      // ✅ Your Google Apps Script Web App URL
+      const apiUrl = `https://script.google.com/macros/s/AKfycbzHQQe6n15acgPHodujgA15xnCSy_9HYn_CK6B7xDEoOxKFykj1OQNsXmt1V0Tihm63/exec?id=${certId}`;
 
       fetch(apiUrl)
         .then(response => response.json())
@@ -108,7 +113,7 @@
               <div class="success">
                 ✅ Certificate Verified<br><br>
                 <strong>Name:</strong> ${data.name}<br>
-                <strong>Score:</strong> ${data.Score}<br>
+                <strong>Course:</strong> ${data.course || "N/A"}<br>
                 <strong>Date:</strong> ${data.date}<br><br>
                 <a class="download-link" href="${data.certURL}" target="_blank" download>⬇ Download Certificate</a>
               </div>
