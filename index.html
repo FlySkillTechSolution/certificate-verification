@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Certificate Verification - Fly Skill Tech Solution</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f4f6f8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      padding: 40px;
+      max-width: 480px;
+      text-align: center;
+    }
+
+    h2 {
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+
+    button {
+      background-color: #0078D7;
+      color: white;
+      padding: 12px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #005ea3;
+    }
+
+    #result {
+      margin-top: 20px;
+    }
+
+    .success {
+      color: green;
+    }
+
+    .error {
+      color: red;
+    }
+
+    a.download-link {
+      display: inline-block;
+      margin-top: 10px;
+      text-decoration: none;
+      color: #0078D7;
+    }
+
+    footer {
+      margin-top: 40px;
+      font-size: 14px;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>🎓 Certificate Verification</h2>
+    <input type="text" id="certId" placeholder="Enter Certificate ID (e.g., FSTS-2025-2238)" />
+    <button onclick="verifyCertificate()">Verify</button>
+    <div id="result"></div>
+    <footer>© Copyright 2024 FlySkillTechSolution. All Rights Reserved.</footer>
+  </div>
+
+  <script>
+    function verifyCertificate() {
+      const certId = document.getElementById("certId").value.trim();
+      const resultDiv = document.getElementById("result");
+
+      if (!certId) {
+        resultDiv.innerHTML = `<div class="error">❌ Please enter a Certificate ID</div>`;
+        return;
+      }
+
+      const apiUrl = `https://script.google.com/macros/s/YOUR_SCRIPT_ID_HERE/exec?id=${certId}`;
+
+      fetch(apiUrl)
+        .then(response => response.json())
+        .then(data => {
+          if (data.error) {
+            resultDiv.innerHTML = `<div class="error">❌ Invalid Certificate ID</div>`;
+          } else {
+            resultDiv.innerHTML = `
+              <div class="success">
+                ✅ Certificate Verified<br><br>
+                <strong>Name:</strong> ${data.name}<br>
+                <strong>Score:</strong> ${data.Score}<br>
+                <strong>Date:</strong> ${data.date}<br><br>
+                <a class="download-link" href="${data.certURL}" target="_blank" download>⬇ Download Certificate</a>
+              </div>
+            `;
+          }
+        })
+        .catch(error => {
+          console.error(error);
+          resultDiv.innerHTML = `<div class="error">⚠️ Server error. Please try again later.</div>`;
+        });
+    }
+  </script>
+</body>
+</html>
