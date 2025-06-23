@@ -82,7 +82,7 @@
 <body>
   <div class="container">
     <h2>🎓 Certificate Verification</h2>
-    <input type="text" id="certId" placeholder="Enter Certificate ID (e.g., FSTS-2025-2238)" />
+    <input type="text" id="certId" placeholder="Enter Certificate ID (e.g., FSTS-2025-1234)" />
     <button onclick="verifyCertificate()">Verify</button>
     <div id="result"></div>
     <footer>© 2024 Fly Skill Tech Solution. All Rights Reserved.</footer>
@@ -110,7 +110,7 @@
               <div class="success">
                 ✅ Certificate Verified<br><br>
                 <strong>Name:</strong> ${data.name}<br>
-                <strong>Score:</strong> ${data.Score}<br>
+                <strong>Course:</strong> ${data.course}<br>
                 <strong>Date:</strong> ${data.date}<br><br>
                 <a class="download-link" href="${data.certURL}" target="_blank" download>⬇ Download Certificate</a>
               </div>
