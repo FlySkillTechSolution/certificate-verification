@@ -55,7 +55,6 @@
 
     #result {
       margin-top: 20px;
-      font-size: 16px;
     }
 
     .success {
@@ -71,7 +70,6 @@
       margin-top: 10px;
       text-decoration: none;
       color: #0078D7;
-      font-weight: bold;
     }
 
     footer {
@@ -100,20 +98,19 @@
         return;
       }
 
-      // ✅ Your Google Apps Script Web App URL
-      const apiUrl = `https://script.google.com/macros/s/AKfycbzHQQe6n15acgPHodujgA15xnCSy_9HYn_CK6B7xDEoOxKFykj1OQNsXmt1V0Tihm63/exec?id=${certId}`;
+      const apiUrl = 'https://script.google.com/macros/s/AKfycbzHQQe6n15acgPHodujgA15xnCSy_9HYn_CK6B7xDEoOxKFykj1OQNsXmt1V0Tihm63/exec';
 
-      fetch(apiUrl)
-        .then(response => response.json())
+      fetch(`${apiUrl}?id=${encodeURIComponent(certId)}`)
+        .then(res => res.json())
         .then(data => {
           if (data.error) {
-            resultDiv.innerHTML = `<div class="error">❌ Invalid Certificate ID</div>`;
+            resultDiv.innerHTML = `<div class="error">❌ ${data.error}</div>`;
           } else {
             resultDiv.innerHTML = `
               <div class="success">
                 ✅ Certificate Verified<br><br>
                 <strong>Name:</strong> ${data.name}<br>
-                <strong>Course:</strong> ${data.course || "N/A"}<br>
+                <strong>Score:</strong> ${data.Score}<br>
                 <strong>Date:</strong> ${data.date}<br><br>
                 <a class="download-link" href="${data.certURL}" target="_blank" download>⬇ Download Certificate</a>
               </div>
